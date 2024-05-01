@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showingAlert = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        Button("Show warning in heart") {
+            showingAlert = true
         }
-        .padding()
+        .alert("They're taking the Hobbits to Isengard!", isPresented: $showingAlert) {
+            Button("Forth Eorlingas!", role: .destructive) { }
+            Button("Run short distance", role: .cancel) { }
+        }
     }
 }
 
