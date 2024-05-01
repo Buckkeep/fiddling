@@ -9,27 +9,26 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Button("Button 1") { }
-                .buttonStyle(.bordered)
-            Button("Button 2", role: .destructive) { }
-                .buttonStyle(.bordered)
-            Button("Button 3") { }
-                .buttonStyle(.borderedProminent)
-            Button("Button 4", role: .destructive) { }
-                .buttonStyle(.borderedProminent)
-            Button("Button 5") { }
-                .buttonStyle(.bordered)
-                .tint(.mint)
-            Button() {
-                print("Button was pressed")
-            } label: {
-            Text("Tap me!")
-                    .padding()
-                    .foregroundStyle(.white)
-                    .background(.red)
-            }
+            Image("frodo")
+            Image(decorative: "frodo")
+            Image(systemName: "pencil.circle")
+                .foregroundStyle(.red)
+                .font(.largeTitle)
+
+        Button {
+            print("Button was tapped")
+        } label: {
+            Label("Edit", systemImage: "pencil")
+                .padding()
+                .foregroundStyle(.white)
+                .background(.red)
         }
+        Button() {
+            print("Button was pressed")
+        } label: {
+            Image("frodo")
+        }
+
     }
 }
 

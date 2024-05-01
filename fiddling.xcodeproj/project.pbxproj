@@ -11,6 +11,7 @@
 		1429E3142BE24E09006FA7F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429E3132BE24E09006FA7F2 /* ContentView.swift */; };
 		1429E3162BE24E0C006FA7F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1429E3152BE24E0C006FA7F2 /* Assets.xcassets */; };
 		1429E3192BE24E0C006FA7F2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1429E3182BE24E0C006FA7F2 /* Preview Assets.xcassets */; };
+		1429E3202BE25155006FA7F2 /* frodo.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1429E31F2BE25155006FA7F2 /* frodo.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		1429E3132BE24E09006FA7F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1429E3152BE24E0C006FA7F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1429E3182BE24E0C006FA7F2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1429E31F2BE25155006FA7F2 /* frodo.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = frodo.jpeg; path = ../../../Downloads/frodo.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 				1429E3112BE24E09006FA7F2 /* fiddlingApp.swift */,
 				1429E3132BE24E09006FA7F2 /* ContentView.swift */,
 				1429E3152BE24E0C006FA7F2 /* Assets.xcassets */,
+				1429E31F2BE25155006FA7F2 /* frodo.jpeg */,
 				1429E3172BE24E0C006FA7F2 /* Preview Content */,
 			);
 			path = fiddling;
@@ -125,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1429E3202BE25155006FA7F2 /* frodo.jpeg in Resources */,
 				1429E3192BE24E0C006FA7F2 /* Preview Assets.xcassets in Resources */,
 				1429E3162BE24E0C006FA7F2 /* Assets.xcassets in Resources */,
 			);
