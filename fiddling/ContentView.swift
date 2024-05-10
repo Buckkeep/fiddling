@@ -27,6 +27,14 @@ struct ContentView: View {
             }
 
     }
+    
+    func testBundles() {
+        if let fileURL = Bundle.main.url(forResource: "somefile", withExtension: "txt") {
+            if let fileContents = try? String(contentsOf: fileURL) {
+                // do what you want with the string!
+            }
+        }
+    }
 }
 
 
