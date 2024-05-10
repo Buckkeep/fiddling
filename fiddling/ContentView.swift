@@ -18,23 +18,37 @@ struct ContentView: View {
         
             List {
                 Text("Scooby Doo, where are you?")
-                
-                ForEach(people, id: \.self) {
-                    Text($0)
-                }
-                
-                Text("Donde estas, Scooby Doo?")
             }
 
     }
     
-    func testBundles() {
-        if let fileURL = Bundle.main.url(forResource: "somefile", withExtension: "txt") {
-            if let fileContents = try? String(contentsOf: fileURL) {
-                // do what you want with the string!
-            }
-        }
+    func testStrings() {
+        let input = """
+May I compare thee to a summer's day
+Thou art more lovely and more temperate
+Rough winds do shake the darling buds of May
+And summer's lease hath all too short a date
+"""
+        let lines = input.components(separatedBy: "\n")
+        let line = lines.randomElement()
+        let trimmed = line?.trimmingCharacters(in: .whitespaces)
     }
+    
+    func spellCheck() {
+        let word = "Swift"
+        let checker = UITextChecker()
+        
+        let range = NSRange(location: 0, length: word.utf16.count)
+        
+        // report where it found locations of misspellings
+        
+        let misspeltRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
+        
+        // No misspelt words means we get NSNotFound back
+        
+        let allGood = misspeltRange.location == NSNotFound
+    }
+    
 }
 
 
