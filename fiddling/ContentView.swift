@@ -9,26 +9,25 @@
 
 import SwiftUI
 
-struct SecondView: View {
-    @Environment(\.dismiss) var dismiss
-    let name: String
-    var body: some View {
-            Text("Hello \(name)!")
-        Button("Dismiss") {
-            dismiss()
-        }
-    }
+struct User: Codable {
+    let firstname: String
+    let lastname: String
 }
 
 struct ContentView: View {
     
-    @AppStorage("tapCount") private var tapCount = 0
+    @State private var user = User(firstname: "Taylor", lastname: "Swift")
+    
     
     var body: some View {
-        Button("Tap Count: \(tapCount)") {
-            tapCount += 1
+        Button("Save User") {
+            let encoder = JSONEncoder()
             
+            if let data = try? encoder.encode(user) {
+                UserDefaults.standard.set(data, forKey: "UserData")
+            }
         }
+            
     }
 
 
