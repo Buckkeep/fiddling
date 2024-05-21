@@ -9,46 +9,25 @@
 
 import SwiftUI
 
-
+@Observable
+class User {
+    var firstname = "Bilbo"
+    var lastname = "Baggins"
+}
 
 struct ContentView: View {
-    let people = ["Finn", "Leia", "Luke", "Rey"]
+    
+    @State private var user = User()
     
     var body: some View {
-        
-            List {
-                Text("Scooby Doo, where are you?")
-            }
-
+        VStack {
+            Text("Your name is \(user.firstname) \(user.lastname)")
+            
+            TextField("First name", text: $user.firstname)
+            
+            TextField("Last name", text: $user.lastname)
+        }
     }
-    
-    func testStrings() {
-        let input = """
-May I compare thee to a summer's day
-Thou art more lovely and more temperate
-Rough winds do shake the darling buds of May
-And summer's lease hath all too short a date
-"""
-        let lines = input.components(separatedBy: "\n")
-        let line = lines.randomElement()
-        let trimmed = line?.trimmingCharacters(in: .whitespaces)
-    }
-    
-    func spellCheck() {
-        let word = "Swift"
-        let checker = UITextChecker()
-        
-        let range = NSRange(location: 0, length: word.utf16.count)
-        
-        // report where it found locations of misspellings
-        
-        let misspeltRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
-        
-        // No misspelt words means we get NSNotFound back
-        
-        let allGood = misspeltRange.location == NSNotFound
-    }
-    
 }
 
 
