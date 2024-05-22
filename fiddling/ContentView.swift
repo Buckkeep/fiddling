@@ -13,10 +13,16 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            NavigationLink("Tap Me") {
+            NavigationLink {
                 Text("Detail View")
+            } label: {
+                VStack {
+                    Text("This is the label")
+                    Text("So is this")
+                    Image(systemName: "face.smiling")
+                }
             }
-                .navigationTitle("SwiftUI")
+            .navigationTitle("SwiftUI")
         }
             
     }
