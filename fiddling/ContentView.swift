@@ -13,13 +13,9 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            NavigationLink {
-                Text("Detail View")
-            } label: {
-                VStack {
-                    Text("This is the label")
-                    Text("So is this")
-                    Image(systemName: "face.smiling")
+            List(0..<100) { row in
+                NavigationLink("Row \(row)") {
+                    Text("Detail about row \(row)")
                 }
             }
             .navigationTitle("SwiftUI")
