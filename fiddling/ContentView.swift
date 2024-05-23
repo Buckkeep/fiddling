@@ -4,7 +4,7 @@
 //
 //  Created by Neeta Buhecha on 01/05/2024.
 //
-//  LazyVGrid - Fixed Column Sizes
+//  LazyVGrid - Adaptive Column Sizes
 //
 
 import SwiftUI
@@ -12,10 +12,9 @@ import SwiftUI
 struct ContentView: View {
     
     let layout = [
-        GridItem(.fixed(80)),
-        GridItem(.fixed(80)),
-        GridItem(.fixed(80))
+        GridItem(.adaptive(minimum: 80)),
     ]
+                 
     
     var body: some View {
         ScrollView {
