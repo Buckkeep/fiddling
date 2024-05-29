@@ -4,41 +4,35 @@
 //
 //  Created by Neeta Buhecha on 01/05/2024.
 //
-//  Navigating to different data types using NavigationPath
+//  Returning to root view programmatically (using Binding)
 //
 
 import SwiftUI
 
+struct DetailView: View {
+    var number: Int
+    @Binding var path: [Int]
+    
+    var body: some View {
+        NavigationLink("Go to random number", value: Int.random(in: 0...1000))
+            .navigationTitle("Number: \(number)")
+            .toolbar {
+                Button("Home") {
+                    path.removeAll()
+                }
+            }
+    }
+}
+
 struct ContentView: View {
-    @State private var path = NavigationPath()
+    @State private var path = [Int]()
     
     var body: some View {
         NavigationStack(path: $path) {
-            List{
-                
-                ForEach(0..<5) { i in
-                    NavigationLink("Select Number: \(i)", value: i)
+            DetailView(number: 0, path: $path)
+                .navigationDestination(for: Int.self) {i in
+                    DetailView(number: i, path: $path)
                 }
-                
-                ForEach(0..<5) { i in
-                    NavigationLink("Select String \(i)", value: String(i))
-                }
-
-            }
-            .toolbar {
-                Button("Push 556") {
-                    path.append(556)
-                }
-                Button("Push Hello") {
-                    path.append("Hello")
-                }
-            }
-            .navigationDestination(for: Int.self) { selection in
-                Text("You selected the number \(selection)")
-            }
-            .navigationDestination(for: String.self) { selection in
-                Text("You selected the string \(selection)")
-            }
         }
     }
 }
