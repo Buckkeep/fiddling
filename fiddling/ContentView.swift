@@ -4,7 +4,7 @@
 //
 //  Created by Neeta Buhecha on 01/05/2024.
 //
-//  Customising the navigation bar appearance
+//  Placing toolbar buttons in exact locations
 //
 
 import SwiftUI
@@ -13,14 +13,14 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            List(0..<100) { i in
-                Text("Row \(i)")
+            Text("Hello, world!")
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Tap Me") {
+                        // button action here
+                    }
+                }
             }
-            .navigationTitle("Title goes here")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbarBackground(.blue)
-            .toolbarColorScheme(.dark)
-            .toolbar(.hidden, for: .navigationBar)
         }
     }
 }
