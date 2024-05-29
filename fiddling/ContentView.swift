@@ -4,31 +4,30 @@
 //
 //  Created by Neeta Buhecha on 01/05/2024.
 //
-//  Programmatic navigation with NavigationStack
+//  Navigating to different data types using NavigationPath - not tracking the path
 //
 
 import SwiftUI
 
 struct ContentView: View {
-    @State private var path = [Int]()
     
     var body: some View {
-        NavigationStack(path: $path) {
-            VStack{
-                Button("Show 32") {
-                    path = [32]
+        NavigationStack {
+            List{
+                ForEach(0..<5) { i in
+                    NavigationLink("Select Number: \(i)", value: i)
                 }
                 
-                Button("Show 64") {
-                    path.append(64)
+                ForEach(0..<5) { i in
+                    NavigationLink("Select String \(i)", value: String(i))
                 }
-                
-                Button("Show 32, then 64") {
-                    path = [32, 64]
-                }
+
             }
             .navigationDestination(for: Int.self) { selection in 
-                Text ("You selected \(selection)")
+                Text("You selected the number\(selection)")
+            }
+            .navigationDestination(for: String.self) { selection in
+                Text("You selected the string \(selection)")
             }
         }
     }
