@@ -4,14 +4,14 @@
 //
 //  Created by Neeta Buhecha on 01/05/2024.
 //
-//  Save NavigationStack paths using Codable - [Int]
+//  Save NavigationStack paths using Codable - NavigationPath
 //
 
 import SwiftUI
 
 @Observable
 class PathStore {
-    var path: [Int] {
+    var path: NavigationPath {
         didSet {
             save()
         }
@@ -21,18 +21,25 @@ class PathStore {
     
     init() {
         if let data = try? Data(contentsOf: savePath) {
-            if let decoded = try? JSONDecoder().decode([Int].self, from: data) {
-                path = decoded
+            if let decoded = try?
+                // CodeableRepresentation is a method for NavigationPath that makes it usable wherever Codable is required.
+                JSONDecoder().decode(NavigationPath.CodableRepresentation.self, from: data) {
+                path = NavigationPath(decoded)
                 return
             }
         }
         // if you couldn't decode it/load the file the return will bring us here
-        path = []
+        path = NavigationPath()
     }
     
+    
     func save() {
+        
+        // attempt to retrieve codeable data  but bail out if something doesn't conform
+        guard let representation = path.codable else {return}
         do {
-            let data = try JSONEncoder().encode(path)
+            // encode the pre-checked data
+            let data = try JSONEncoder().encode(representation)
             try data.write(to: savePath)
         } catch {
             print("Failed to save navigation data")
@@ -51,10 +58,12 @@ struct DetailView: View {
 }
 
 struct ContentView: View {
-    @State private var path = NavigationPath()
+    // initialise the variable as an instance of the newly created Class
+    @State private var pathStore = PathStore()
     
     var body: some View {
-        NavigationStack(path: $path) {
+        // point the path to the path variable within the pathStore instance
+        NavigationStack(path: $pathStore.path) {
             DetailView(number: 0)
                 .navigationDestination(for: Int.self) {i in
                     DetailView(number: i)
