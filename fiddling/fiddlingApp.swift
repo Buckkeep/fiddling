@@ -5,6 +5,7 @@
 //  Created by Neeta Buhecha on 01/05/2024.
 //
 
+import SwiftData
 import SwiftUI
 
 @main
@@ -13,5 +14,6 @@ struct fiddlingApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: Student.self)
     }
 }
