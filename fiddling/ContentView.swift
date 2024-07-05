@@ -9,49 +9,32 @@
 
 import SwiftUI
 
-struct Response: Codable {
-    var results: [Result]
-}
-
-struct Result: Codable {
-    var trackId: Int
-    var trackName: String
-    var collectionName: String
+struct PushButton: View {
+    let title:String
+    @Binding var isOn: Bool
+    
+    var onColors = [Color.red, Color.yellow]
+    var offColors = [Color(white: 0.6), Color(white: 0.4)]
+    
+    var body: some View {
+        Button(title) {
+            isOn.toggle()
+        }
+        .padding()
+        .background(LinearGradient(colors: isOn ? onColors : offColors, startPoint: .top, endPoint: .bottom))
+        .foregroundStyle(.white)
+        .clipShape(.capsule)
+        .shadow(radius: isOn ? 0 : 5)
+    }
 }
 
 struct ContentView: View {
-    @State private var results = [Result]()
-    
+    @State private var rememberMe = false
 
     var body: some View {
-        List(results, id: \.trackId) { item in
-            VStack(alignment: .leading) {
-                Text(item.trackName)
-                    .font(.headline)
-                
-                Text(item.collectionName)
-            }
-        }
-        .task {
-            await loadData()
-        }
-    }
-    
-    func loadData() async {
-        guard let url = URL(string: "https://itunes.apple.com/search?term=taylor+swift&entity=song") else {
-            print("Invalid URL")
-            return
-        }
-        
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            
-            if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data)
-            {
-                results = decodedResponse.results
-            }
-        } catch {
-            print("Invalid data")
+        VStack {
+            PushButton(title: "Remember Me", isOn: $rememberMe)
+            Text(rememberMe ? "On" : "Off")
         }
     }
 }
