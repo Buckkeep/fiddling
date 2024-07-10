@@ -14,6 +14,6 @@ struct fiddlingApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Student.self)
+        .modelContainer(for: User.self)
     }
 }

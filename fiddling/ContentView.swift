@@ -12,25 +12,25 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
-    @Query var students: [Student]
-    
+    @Query(sort: \User.name) var users: [User]
+    @State private var path = [User]()
+
     var body: some View {
-        NavigationStack {
-            List(students) { student in
-                Text(student.name)
+        NavigationStack(path: $path) {
+            List(users) { user in
+                NavigationLink(value: user) {
+                    Text(user.name)
+                }
             }
-            .navigationTitle("Classroom")
+            .navigationTitle("Users")
+            .navigationDestination(for: User.self) { user in
+                EditUserView(user: user)
+            }
             .toolbar {
-                Button("Add") {
-                    let firstNames = ["Ginny", "Harry", "Hermione", "Ron"]
-                    let lastNames = ["Granger", "Lovegood", "Potter", "Weasley"]
-                    
-                    let chosenFirstName = firstNames.randomElement()!
-                    let chosenLastName = lastNames.randomElement()!
-                    
-                    let student = Student(id: UUID(), name: "\(chosenFirstName) \(chosenLastName)")
-                    modelContext.insert(student)
-                    
+                Button("Add User", systemImage: "plus") {
+                    let user = User(name: "", city: "", joinDate: .now)
+                    modelContext.insert(user)
+                    path = [user]
                 }
             }
         }
