@@ -7,6 +7,8 @@
 //  Making your navigation title editable
 //
 
+import CoreImage
+import CoreImage.CIFilterBuiltins
 import SwiftUI
 
 struct ContentView: View {
@@ -22,7 +24,20 @@ struct ContentView: View {
     }
     
     func loadImage() {
-        image = Image(.lotR)
+        let inputImage = UIImage(resource: .lotR)
+        let beginImage = CIImage(image: inputImage)
+        
+        let context = CIContext()
+        let currentFilter = CIFilter.sepiaTone()
+        
+        currentFilter.inputImage = beginImage
+        currentFilter.intensity = 1
+        
+        guard let outputImage = currentFilter.outputImage else {return}
+        guard let cgImage = context.createCGImage(outputImage, from: outputImage.extent) else {return}
+        let uiImage = UIImage(cgImage: cgImage)
+        image = Image(uiImage: uiImage)
+        
     }
 }
 
