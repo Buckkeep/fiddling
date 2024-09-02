@@ -4,7 +4,7 @@
 //
 //  Created by Neeta Buhecha on 01/05/2024.
 //
-//  Making your navigation title editable
+//  How to let the user share content with ShareLink
 //
 
 import PhotosUI
@@ -15,30 +15,7 @@ struct ContentView: View {
     @State private var selectedImages = [Image]()
     
     var body: some View {
-        VStack {
-            PhotosPicker(selection: $pickerItems, maxSelectionCount: 3, matching: .any(of: [.images, .not(.screenshots)])) {
-                Label("Select your picture" , systemImage: "photo")
-            }
-            
-            
-            ScrollView {
-                ForEach(0..<selectedImages.count, id: \.self) { i in
-                    selectedImages[i]
-                        .resizable()
-                        .scaledToFit()
-                }
-            }
-            .onChange(of: pickerItems) {
-                Task {
-                    selectedImages.removeAll()
-                    for item in pickerItems {
-                        if let loadedImage = try await item.loadTransferable(type: Image.self) {
-                            selectedImages.append(loadedImage)
-                        }
-                    }
-                }
-            }
-        }
+        ShareLink(item: URL(string: "https://www.hackingwithswift.com")!, subject: Text("Learn Swift Here"), message: Text("Check out 100 Days of SwiftUI"))
     }
 }
 
