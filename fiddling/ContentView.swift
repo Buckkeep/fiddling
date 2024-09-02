@@ -2,20 +2,20 @@
 //  ContentView.swift
 //  fiddling
 //
-//  Created by Neeta Buhecha on 01/05/2024.
+//  Created by Neeta Buhecha on 02/09/2024.
 //
-//  How to let the user share content with ShareLink (with preview)
+//  How to ask the user to leave an App Store review
 //
 
+import StoreKit
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.requestReview) var requestReview
     
     var body: some View {
-        let frodo = Image(.frodo)
-        
-        ShareLink(item: frodo, preview: SharePreview("A Baggins", image: frodo)) {
-        Label("Click to share", systemImage: "airplane")
+        Button("Leave a Review") {
+            requestReview()
         }
     }
 }
