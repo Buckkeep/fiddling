@@ -16,7 +16,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            PhotosPicker(selection: $pickerItems, maxSelectionCount: 3, matching: .images) {
+            PhotosPicker(selection: $pickerItems, maxSelectionCount: 3, matching: .any(of: [.images, .not(.screenshots)])) {
                 Label("Select your picture" , systemImage: "photo")
             }
             
