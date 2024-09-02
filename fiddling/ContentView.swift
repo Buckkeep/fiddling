@@ -16,7 +16,9 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            PhotosPicker("Select a picture", selection: $pickerItems, maxSelectionCount: 3, matching: .images)
+            PhotosPicker(selection: $pickerItems, maxSelectionCount: 3, matching: .images) {
+                Label("Select your picture" , systemImage: "photo")
+            }
             
             
             ScrollView {
