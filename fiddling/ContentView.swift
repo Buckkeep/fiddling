@@ -23,6 +23,10 @@ struct ContentView: View {
         VStack {
             Map(position: $position)
                 .mapStyle(.hybrid)
+                .onMapCameraChange { context in
+                    print(context.region)
+                }
+            
             HStack(spacing: 50) {
                 Button("Paris") {
                     position = MapCameraPosition.region(
