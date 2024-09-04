@@ -2,28 +2,19 @@
 //  ContentView.swift
 //  fiddling
 //
-//  Created by Neeta Buhecha on 03/09/2024.
+//  Created by Neeta Buhecha on 04/09/2024.
 //
-//  Writing data to the documents directory
+//  Integrating MapKit with SwiftUI
 //
 
+import MapKit
 import SwiftUI
 
 struct ContentView: View {
 
     var body: some View {
-        Button("Read and Write") {
-            let data = Data("Test Message".utf8)
-            let url = URL.documentsDirectory.appending(path: "message.txt")
-
-            do {
-                try data.write(to: url, options: [.atomic, .completeFileProtection])
-                let input = try String(contentsOf: url)
-                print(input)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
+        Map()
+            .mapStyle(.hybrid)
     }
 }
 
