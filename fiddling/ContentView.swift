@@ -2,20 +2,18 @@
 //  ContentView.swift
 //  fiddling
 //
-//  Created by Neeta Buhecha on 02/09/2024.
+//  Created by Neeta Buhecha on 03/09/2024.
 //
-//  How to ask the user to leave an App Store review
+//  Adding conformance to Comparable for custom types
 //
 
-import StoreKit
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(\.requestReview) var requestReview
-    
+    let values = [1,5,3,6,2,9].sorted()
     var body: some View {
-        Button("Leave a Review") {
-            requestReview()
+        List(values, id: \.self) {
+            Text(String($0))
         }
     }
 }
