@@ -23,7 +23,7 @@ struct ContentView: View {
         VStack {
             Map(position: $position)
                 .mapStyle(.hybrid)
-                .onMapCameraChange { context in
+                .onMapCameraChange(frequency: .continuous) { context in
                     print(context.region)
                 }
             
