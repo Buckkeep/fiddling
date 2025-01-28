@@ -18,13 +18,13 @@ struct ContentView: View {
         Text("Hello, world!")
             .scaleEffect(finalAmount + currentAmount)
             .gesture(
-            MagnifyGesture()
-                .onChanged { value in
-                    currentAmount = value.magnification - 1
-                }
-                .onEnded { value in
-                    finalAmount += currentAmount
-                    currentAmount = 0
+                MagnifyGesture()
+                    .onChanged { value in
+                        currentAmount = value.magnification - 1
+                    }
+                    .onEnded { value in
+                        finalAmount += currentAmount
+                        currentAmount = 0
                     }
             )
     }
